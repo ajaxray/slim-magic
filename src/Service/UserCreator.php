@@ -1,26 +1,19 @@
 <?php
 declare(strict_types=1);
-namespace App\Domain\User\Service;
+namespace App\Service;
 
-use App\Domain\User\Repository\UserCreatorRepository;
+use App\Repository\UserRepository;
 use App\Exception\ValidationException;
 
 final class UserCreator
 {
     /**
-     * @var UserCreatorRepository
-     */
-    private $repository;
-
-    /**
      * The constructor.
      *
-     * @param UserCreatorRepository $repository The repository
+     * @param UserRepository $repository The repository
      */
-    public function __construct(UserCreatorRepository $repository)
-    {
-        $this->repository = $repository;
-    }
+    public function __construct(private UserRepository $repository)
+    {}
 
     /**
      * Create a new user.
@@ -56,8 +49,6 @@ final class UserCreator
     private function validateNewUser(array $data): void
     {
         $errors = [];
-
-        // Here you can also use your preferred validation library
 
         if (empty($data['username'])) {
             $errors['username'] = 'Input required';

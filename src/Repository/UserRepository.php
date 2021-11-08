@@ -1,18 +1,14 @@
 <?php
 
-namespace App\Domain\User\Repository;
+namespace App\Repository;
 
 use Doctrine\DBAL\Connection;
 use Doctrine\DBAL\Exception;
 
-final class UserCreatorRepository
+final class UserRepository
 {
-    private Connection $connection;
-
-    public function __construct(Connection $connection)
-    {
-        $this->connection = $connection;
-    }
+    public function __construct(private Connection $connection)
+    {}
 
     /**
      * Insert user row.

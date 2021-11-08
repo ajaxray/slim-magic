@@ -1,0 +1,22 @@
+.error {
+    color: red;
+}
+.error.input {
+    margin-top: -10px;
+    margin-bottom: 10px;
+}
+
+.success {
+    color: green;
+}
+
+.alert.success {
+    padding: 10px;
+    background-color: #afc;
+    margin-bottom: 10px;
+}
+
+.meta {
+    font-size: 85%;
+    color: #333333;
+}

@@ -26,6 +26,10 @@ return function (Magic $container) {
         return $container->get(App::class)->getResponseFactory();
     });
 
+//    $container->map(ContainerInterface::class, function (ContainerInterface $container, $params) {
+//        return $container;
+//    });
+
     $container->map(ErrorMiddleware::class, function (ContainerInterface $container, $params) {
         $app = $container->get(App::class);
         $settings = $container->get('settings')['error'];
@@ -46,4 +50,6 @@ return function (Magic $container) {
     $container->map(Connection::class, function (ContainerInterface $container, $params) {
         return \Doctrine\DBAL\DriverManager::getConnection(['url' => $params['dsn']]);
     });
+
+    $container->map('template', \App\Service\TemplateService::class, ['@cacheable' => false]);
 };

@@ -2,19 +2,20 @@
 
 namespace App\Action;
 
-use App\Domain\User\Service\UserCreator;
+
+use App\Service\UserCreator;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 
 final class UserCreateAction
 {
-    private $userCreator;
-
-    public function __construct(UserCreator $userCreator)
+    public function __construct(private UserCreator $userCreator)
     {
-        $this->userCreator = $userCreator;
     }
 
+    /**
+     * @throws \Doctrine\DBAL\Exception
+     */
     public function __invoke(
         ServerRequestInterface $request,
         ResponseInterface $response
