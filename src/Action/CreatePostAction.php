@@ -6,6 +6,7 @@ namespace App\Action;
 use App\Exception\ValidationException;
 use App\Service\PostCreator;
 use App\Service\TemplateService;
+use App\Traits\CsrfProtection;
 use Psr\Container\ContainerInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
@@ -13,6 +14,8 @@ use Slim\Csrf\Guard;
 
 class CreatePostAction
 {
+    use CsrfProtection;
+
     public function __construct(
         private TemplateService $template, // Resolve by service definition
         private PostCreator $postCreator,  // Resolve by Auto-wiring
@@ -42,7 +45,7 @@ class CreatePostAction
             }
         }
 
-        $this->setCSRF($request);
+        $this->setCSRFFields($request, $this->template, $this->csrf);
         $body = $this->template->set([
             'sidebar' => $this->template->render('_sidebar'),
             'content' => $this->template->render('post/create'),
@@ -53,19 +56,4 @@ class CreatePostAction
         return $response;
     }
 
-    /**
-     * @param ServerRequestInterface $request
-     */
-    private function setCSRF(ServerRequestInterface $request): void
-    {
-        $nameKey = $this->csrf->getTokenNameKey();
-        $valueKey = $this->csrf->getTokenValueKey();
-
-        $this->template->set([
-            'nameKey' => $nameKey,
-            'valueKey' => $valueKey,
-            'name' => $request->getAttribute($nameKey),
-            'value' => $request->getAttribute($valueKey),
-        ]);
-    }
 }

@@ -11,7 +11,7 @@ use Slim\App;
 
 return function (App $app) {
     $app->get('/', HomeAction::class)->setName('home');
-    $app->map(['GET', 'POST'], '/login', LoginAction::class)->setName('login');
+    $app->map(['GET', 'POST'], '/login', LoginAction::class)->setName('login')->add('csrf');
     $app->get('/logout', LogoutAction::class)->setName('logout');
 //    $app->post('/users', \App\Action\UserCreateAction::class);
 
