@@ -21,9 +21,12 @@ class HomeAction
         ResponseInterface $response
     ): ResponseInterface {
         $params = $request->getQueryParams();
-        $page = $params['page'] ?? 1;
+        $page = isset($params['page']) ? intval($params['page']) : 1;
 
-        $this->template->set(['posts' => $this->listing->getPaginated($page)]);
+        $this->template->set([
+            'list' => $this->listing->getPaginated($page),
+            'currentPage'  => $page,
+        ]);
 
         $this->template->set([
             'sidebar' => $this->template->render('_sidebar'),

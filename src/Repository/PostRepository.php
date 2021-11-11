@@ -4,6 +4,7 @@ namespace App\Repository;
 
 use Doctrine\DBAL\Connection;
 use Doctrine\DBAL\Exception;
+use Doctrine\DBAL\ParameterType;
 
 final class PostRepository
 {
@@ -26,7 +27,13 @@ final class PostRepository
 
     public function getPosts(int $limit, int $offset = 0, array $condition = []): array
     {
-        return $this->connection->fetchAllAssociative("SELECT * FROM posts LIMIT {$offset}, {$limit}");
+        return $this->connection->fetchAllAssociative("SELECT * FROM posts ORDER BY id DESC LIMIT {$offset}, {$limit}");
+    }
+
+    public function countPosts(): int
+    {
+        $count = $this->connection->fetchOne("SELECT COUNT(*) FROM posts");
+        return intval($count);
     }
 
     /**
