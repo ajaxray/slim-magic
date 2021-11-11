@@ -17,6 +17,7 @@
             <input type="hidden" name="<?= $valueKey ?>" value="<?= $value ?>">
 
             <input class="button-primary" type="submit" value="Login">
+            &nbsp; <a href="/not-implemented">Forgot password?</a>
         </div>
     </div>
 </form>

@@ -11,7 +11,7 @@
         </div>
     </div>
     <label for="content">Post Content</label>
-    <textarea class="u-full-width" placeholder="Hi Dave …" id="content" name="content" rows="10" style="height: 200px"></textarea>
+    <textarea class="u-full-width" placeholder="The details …" id="content" name="content" rows="10" style="height: 200px"></textarea>
     <?= isset($errors['content']) ? '<div class="input error">'. $errors['content'] .'</div>' : '' ?>
 
 <!--    <label class="example-send-yourself-copy">-->
