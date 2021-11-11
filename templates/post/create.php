@@ -13,10 +13,15 @@
     <label for="content">Post Content</label>
     <textarea class="u-full-width" placeholder="Hi Dave …" id="content" name="content" rows="10" style="height: 200px"></textarea>
     <?= isset($errors['content']) ? '<div class="input error">'. $errors['content'] .'</div>' : '' ?>
+
 <!--    <label class="example-send-yourself-copy">-->
 <!--        <input type="checkbox">-->
 <!--        <span class="label-body">Send a copy to yourself</span>-->
 <!--    </label>-->
+
+    <input type="hidden" name="<?= $nameKey ?>" value="<?= $name ?>">
+    <input type="hidden" name="<?= $valueKey ?>" value="<?= $value ?>">
+
     <input class="button-primary" type="submit" value="Submit">
 </form>
 

@@ -29,4 +29,9 @@ $settings['error'] = [
     'log_error_details' => true,
 ];
 
+$settings['auth'] = [
+    'user' => 'admin',
+    'pass' => '123123',
+];
+
 return $settings;

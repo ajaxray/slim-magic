@@ -4,6 +4,7 @@ use Doctrine\DBAL\Connection;
 use Psr\Container\ContainerInterface;
 use Psr\Http\Message\ResponseFactoryInterface;
 use Slim\App;
+use Slim\Csrf\Guard;
 use Slim\Factory\AppFactory;
 use Slim\Middleware\ErrorMiddleware;
 use Selective\BasePath\BasePathMiddleware;
@@ -52,4 +53,9 @@ return function (Magic $container) {
     });
 
     $container->map('template', \App\Service\TemplateService::class, ['@cacheable' => false]);
+
+    $container->map('csrf', function (ContainerInterface $container, $params) {
+        $responseFactory = $container->get(ResponseFactoryInterface::class);
+        return new Guard($responseFactory);
+    });
 };

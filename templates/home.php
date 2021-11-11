@@ -1,7 +1,7 @@
 
 <div class="u-cf"></div>
-<h1>Hello from home</h1>
+<h3>Recent Posts</h3>
 
 <?php foreach($posts as $post): ?>
-    <h3><a href="/posts/<?= $post['id'] ?>"><?= $post['title'] ?></a></h3>
+    <h4><a href="/posts/<?= $post['id'] ?>"><?= $post['title'] ?></a></h4>
 <?php endforeach; ?>

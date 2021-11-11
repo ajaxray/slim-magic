@@ -1,3 +1,11 @@
+body {
+    margin: 0;
+    padding: 0;
+    background-image: url('/images/banner.jpeg');
+    background-repeat: no-repeat;
+    background-size: 100% 150px;
+}
+
 .error {
     color: red;
 }
@@ -19,4 +27,13 @@
 .meta {
     font-size: 85%;
     color: #333333;
+}
+
+.box {
+    min-height: 200px;
+    margin-top: 200px;
+    padding: 20px;
+    border: 1px solid gray;
+    border-radius: 5px;
+    box-shadow: 2px 3px 3px #999;
 }

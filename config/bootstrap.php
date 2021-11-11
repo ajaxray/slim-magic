@@ -5,6 +5,8 @@ use Slim\App;
 
 require_once __DIR__ . '/../vendor/autoload.php';
 
+session_start();
+
 $container = new Magic();
 (require __DIR__ . '/container.php')($container);
 
