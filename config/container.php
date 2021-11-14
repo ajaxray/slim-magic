@@ -40,7 +40,9 @@ return function (Magic $container) {
     //</editor-fold>
 
     // ======== Define Parameters ================
-    $container->param('dsn', 'mysql://apps:bismillah@localhost/slim-blog?charset=UTF8');
+
+    // @see - https://www.doctrine-project.org/projects/doctrine-dbal/en/latest/reference/configuration.html#connecting-using-a-url
+    $container->param('dsn', 'mysql://user:pass@db/blog?charset=UTF8');
 
     // ======== Define Services ================
     $container->map(Connection::class, function (ContainerInterface $container, $params) {
