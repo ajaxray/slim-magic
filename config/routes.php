@@ -1,6 +1,7 @@
 <?php
 
 use App\Action\CreatePostAction;
+use App\Action\EditPostAction;
 use App\Action\HomeAction;
 use App\Action\LoginAction;
 use App\Action\LogoutAction;
@@ -16,6 +17,7 @@ return function (App $app) {
 //    $app->post('/users', \App\Action\UserCreateAction::class);
 
     $app->get('/posts/{id:[0-9]+}', ShowPostAction::class);
+    $app->map(['GET', 'POST'], '/posts/edit/{id:[0-9]+}', EditPostAction::class)->add('csrf');
     $app->get('/posts/new', CreatePostAction::class)->add('csrf');;
-    $app->post('/posts', CreatePostAction::class)->add('csrf');;
+    $app->post('/posts', CreatePostAction::class)->add('csrf');
 };

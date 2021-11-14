@@ -25,6 +25,14 @@ final class PostRepository
         return (int)$this->connection->lastInsertId();
     }
 
+    /**
+     * @throws Exception
+     */
+    public function updatePost(int $id, array $data): int
+    {
+        return $this->connection->update('posts', $data, ['id' => $id]);
+    }
+
     public function getPosts(int $limit, int $offset = 0, array $condition = []): array
     {
         return $this->connection->fetchAllAssociative("SELECT * FROM posts ORDER BY id DESC LIMIT {$offset}, {$limit}");

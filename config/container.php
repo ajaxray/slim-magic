@@ -13,7 +13,6 @@ return function (Magic $container) {
 
     $container->param('dsn', 'mysql://apps:bismillah@localhost/slim-blog?charset=UTF8');
 
-
     $container->map('settings', function ($m, $params) {
         return require __DIR__ . '/settings.php';
     });
@@ -26,10 +25,6 @@ return function (Magic $container) {
     $container->map(ResponseFactoryInterface::class, function (ContainerInterface $container, $params) {
         return $container->get(App::class)->getResponseFactory();
     });
-
-//    $container->map(ContainerInterface::class, function (ContainerInterface $container, $params) {
-//        return $container;
-//    });
 
     $container->map(ErrorMiddleware::class, function (ContainerInterface $container, $params) {
         $app = $container->get(App::class);

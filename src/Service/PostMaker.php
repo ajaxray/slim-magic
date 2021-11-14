@@ -5,7 +5,7 @@ namespace App\Service;
 use App\Repository\PostRepository;
 use App\Exception\ValidationException;
 
-final class PostCreator
+final class PostMaker
 {
     /**
      * The constructor.
@@ -33,6 +33,17 @@ final class PostCreator
         //$this->logger->info(sprintf('User created successfully: %s', $userId));
 
         return $userId;
+    }
+
+    /**
+     * @return int Number of updated rows
+     * @throws \Doctrine\DBAL\Exception
+     */
+    public function updatePost(int $id, array $data): int
+    {
+        $this->validateNewPost($data);
+
+        return $this->repository->updatePost($id, $data);
     }
 
     /**

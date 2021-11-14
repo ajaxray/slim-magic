@@ -44,7 +44,7 @@
         <div class="five columns">
             <nav class="u-pull-right">
                 <a href="/">Home</a>
-                <?php if (!isset($hideNewPost) && isset($_SESSION['user'])): ?>
+                <?php if (isset($_SESSION['user'])): ?>
                     | <a href="/posts/new">Create New Post</a>
                     | <?= $_SESSION['user'] ?> (<a href="/logout">logout</a>)
                 <?php else: ?>

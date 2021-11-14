@@ -3,16 +3,19 @@ declare(strict_types=1);
 
 namespace App\Action;
 
-use App\Service\PostListing;
+use App\Service\PostReader;
 use App\Service\TemplateService;
+use App\Traits\FlashBanner;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 
 class HomeAction
 {
+    use FlashBanner;
+
     public function __construct(
         private TemplateService $template,
-        private PostListing $listing,
+        private PostReader      $listing,
     ){
     }
 
@@ -33,12 +36,7 @@ class HomeAction
             'content' => $this->template->render('home'),
         ]);
 
-        if (isset($params['success'])) {
-            $this->template->set([
-                'flash_type' => 'success',
-                'flash_message' => ucfirst($params['success']) . " {$params['action']} successfully",
-            ]);
-        }
+        $this->setFlashData($this->template, $params);
 
         // $response->getBody()->write('Hello, World agan!');
         $response->getBody()->write($this->template->render('layout'));

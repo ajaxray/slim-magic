@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace App\Traits;
 
@@ -24,5 +25,11 @@ trait CsrfProtection
             'name' => $request->getAttribute($nameKey),
             'value' => $request->getAttribute($valueKey),
         ]);
+    }
+
+    private function cleanCSRFFields(Guard $csrf, array &$data): void
+    {
+        unset($data[$csrf->getTokenNameKey()]);
+        unset($data[$csrf->getTokenValueKey()]);
     }
 }

@@ -5,7 +5,7 @@ namespace App\Service;
 
 use App\Repository\PostRepository;
 
-final class PostListing
+final class PostReader
 {
     /**
      * The constructor.

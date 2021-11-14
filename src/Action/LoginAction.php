@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace App\Action;
 
-use App\Service\PostListing;
+use App\Service\PostReader;
 use App\Service\TemplateService;
 use App\Traits\CsrfProtection;
 use Psr\Container\ContainerInterface;
