@@ -3,10 +3,8 @@ declare(strict_types=1);
 
 namespace App\Action;
 
-use App\Service\PostReader;
-use App\Service\TemplateService;
+use App\Service\Template;
 use App\Traits\CsrfProtection;
-use Psr\Container\ContainerInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Slim\App;
@@ -17,9 +15,9 @@ class LoginAction
     use CsrfProtection;
 
     public function __construct(
-        private TemplateService $template,
-        private Guard $csrf,
-        private App $app,
+        private Template $template,
+        private Guard    $csrf,
+        private App      $app,
     ){
     }
 

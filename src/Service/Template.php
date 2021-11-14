@@ -5,7 +5,7 @@ namespace App\Service;
 /**
  * Render a php template with providing variable values (view arguments)
  */
-class TemplateService
+class Template
 {
     /**
      * Template constructor.

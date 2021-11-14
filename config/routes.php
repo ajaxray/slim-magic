@@ -14,7 +14,7 @@ return function (App $app) {
     $app->map(['GET', 'POST'], '/login', LoginAction::class)->setName('login')->add('csrf');
     $app->get('/logout', LogoutAction::class)->setName('logout');
     $app->get('/not-implemented', NotImplementedAction::class)->setName('not-implemented');
-//    $app->post('/users', \App\Action\UserCreateAction::class);
+    // $app->post('/users', \App\Action\UserCreateAction::class);
 
     $app->get('/posts/{id:[0-9]+}', ShowPostAction::class);
     $app->map(['GET', 'POST'], '/posts/edit/{id:[0-9]+}', EditPostAction::class)->add('csrf');

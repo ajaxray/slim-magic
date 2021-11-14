@@ -1,6 +1,6 @@
 <?php
 declare(strict_types=1);
-namespace App\Service;
+namespace App\Domain\Post;
 
 use App\Repository\PostRepository;
 use App\Exception\ValidationException;
@@ -25,7 +25,7 @@ final class PostMaker
      */
     public function createPost(array $data): int
     {
-        $this->validateNewPost($data);
+        $this->validatePost($data);
 
         $userId = $this->repository->insertPost($data);
 
@@ -41,7 +41,7 @@ final class PostMaker
      */
     public function updatePost(int $id, array $data): int
     {
-        $this->validateNewPost($data);
+        $this->validatePost($data);
 
         return $this->repository->updatePost($id, $data);
     }
@@ -55,7 +55,7 @@ final class PostMaker
      *
      * @return void
      */
-    private function validateNewPost(array $data): void
+    private function validatePost(array $data): void
     {
         $errors = [];
 

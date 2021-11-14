@@ -3,8 +3,8 @@ declare(strict_types=1);
 
 namespace App\Action;
 
-use App\Service\PostReader;
-use App\Service\TemplateService;
+use App\Domain\Post\PostReader;
+use App\Service\Template;
 use App\Traits\FlashBanner;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
@@ -14,8 +14,8 @@ class HomeAction
     use FlashBanner;
 
     public function __construct(
-        private TemplateService $template,
-        private PostReader      $listing,
+        private Template   $template,
+        private PostReader $listing,
     ){
     }
 

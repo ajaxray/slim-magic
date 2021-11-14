@@ -9,7 +9,6 @@ use Psr\Http\Message\ServerRequestInterface;
 
 class LogoutAction
 {
-
     public function __invoke(
         ServerRequestInterface $request,
         ResponseInterface $response

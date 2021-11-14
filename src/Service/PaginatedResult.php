@@ -10,6 +10,6 @@ class PaginatedResult
         public bool $hasPrevious,
     )
     {
-        // Simple pagination with just next previous links
+        // ValueObject - Simple pagination with just next previous links
     }
 }

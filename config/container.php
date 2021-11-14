@@ -11,8 +11,7 @@ use Selective\BasePath\BasePathMiddleware;
 
 return function (Magic $container) {
 
-    $container->param('dsn', 'mysql://apps:bismillah@localhost/slim-blog?charset=UTF8');
-
+    //<editor-fold desc="Service definitions required by Slim">
     $container->map('settings', function ($m, $params) {
         return require __DIR__ . '/settings.php';
     });
@@ -38,17 +37,24 @@ return function (Magic $container) {
             (bool)$settings['log_error_details']
         );
     });
+    //</editor-fold>
+
+    // ======== Define Parameters ================
+    $container->param('dsn', 'mysql://apps:bismillah@localhost/slim-blog?charset=UTF8');
+
+    // ======== Define Services ================
+    $container->map(Connection::class, function (ContainerInterface $container, $params) {
+        return \Doctrine\DBAL\DriverManager::getConnection(['url' => $params['dsn']]);
+    });
 
     $container->map(BasePathMiddleware::class, function (ContainerInterface $container, $params) {
         return new BasePathMiddleware($container->get(App::class));
     });
 
-    $container->map(Connection::class, function (ContainerInterface $container, $params) {
-        return \Doctrine\DBAL\DriverManager::getConnection(['url' => $params['dsn']]);
-    });
+    // Define service by simple class mapping
+    $container->map('template', \App\Service\Template::class, ['@cacheable' => false]);
 
-    $container->map('template', \App\Service\TemplateService::class, ['@cacheable' => false]);
-
+    // Define service using callback function
     $container->map('csrf', function (ContainerInterface $container, $params) {
         $responseFactory = $container->get(ResponseFactoryInterface::class);
         return new Guard($responseFactory);

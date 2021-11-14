@@ -3,9 +3,10 @@ declare(strict_types=1);
 
 namespace App\Action;
 
+use App\Domain\Post\PostMaker;
 use App\Exception\ValidationException;
-use App\Service\PostMaker;
-use App\Service\TemplateService;
+
+use App\Service\Template;
 use App\Traits\CsrfProtection;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
@@ -16,9 +17,9 @@ class CreatePostAction
     use CsrfProtection;
 
     public function __construct(
-        private TemplateService $template, // Resolve by service definition
-        private PostMaker       $postCreator,  // Resolve by Auto-wiring
-        private Guard           $csrf,               // Resolve by name matching
+        private Template  $template, // Resolve by service definition
+        private PostMaker $postCreator,  // Resolve by Auto-wiring
+        private Guard     $csrf,               // Resolve by name matching
     ) {
     }
 

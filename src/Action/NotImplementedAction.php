@@ -4,18 +4,14 @@ declare(strict_types=1);
 namespace App\Action;
 
 use App\Service\PostReader;
-use App\Service\TemplateService;
-use App\Traits\CsrfProtection;
-use Psr\Container\ContainerInterface;
+use App\Service\Template;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
-use Slim\App;
-use Slim\Csrf\Guard;
 
 class NotImplementedAction
 {
     public function __construct(
-        private TemplateService $template,
+        private Template $template,
     ){
     }
 

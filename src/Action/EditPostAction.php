@@ -3,12 +3,12 @@ declare(strict_types=1);
 
 namespace App\Action;
 
+use App\Domain\Post\PostMaker;
+use App\Domain\Post\PostReader;
 use App\Exception\ValidationException;
-use App\Service\PostMaker;
-use App\Service\PostReader;
-use App\Service\TemplateService;
+
+use App\Service\Template;
 use App\Traits\CsrfProtection;
-use Psr\Container\ContainerInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Slim\Csrf\Guard;
@@ -19,10 +19,10 @@ class EditPostAction
     use CsrfProtection;
 
     public function __construct(
-        private TemplateService $template,  // Resolve by name matching
-        private PostMaker       $postService,     // Resolve by Auto-wiring
-        private PostReader      $listing,
-        private Guard           $csrf,
+        private Template   $template,  // Resolve by name matching
+        private PostMaker  $postService,     // Resolve by Auto-wiring
+        private PostReader $listing,
+        private Guard      $csrf,
     ) {
     }
 

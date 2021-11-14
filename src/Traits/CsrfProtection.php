@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace App\Traits;
 
-use App\Service\TemplateService;
+use App\Service\Template;
 use Psr\Http\Message\ServerRequestInterface;
 use Slim\Csrf\Guard;
 
@@ -11,10 +11,10 @@ trait CsrfProtection
 {
     /**
      * @param ServerRequestInterface $request
-     * @param TemplateService $template
+     * @param Template $template
      * @param Guard $csrf
      */
-    private function setCSRFFields(ServerRequestInterface $request, TemplateService $template, Guard $csrf): void
+    private function setCSRFFields(ServerRequestInterface $request, Template $template, Guard $csrf): void
     {
         $nameKey = $csrf->getTokenNameKey();
         $valueKey = $csrf->getTokenValueKey();
