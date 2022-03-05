@@ -6,6 +6,7 @@ services:
     build: .
     container_name: php-app
     working_dir: /var/www/
+    restart: unless-stopped
     volumes:
       - ./:/var/www
     depends_on:
@@ -20,8 +21,7 @@ services:
     image: mysql:5.7
     platform: linux/amd64
     container_name: mysql-db
-    ports:
-      - "3307:3307"
+    restart: unless-stopped
     environment:
       MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
       MYSQL_DATABASE: ${DB_DATABASE}
@@ -37,7 +37,7 @@ services:
     container_name: slim-adminer
     environment:
       ADMINER_DEFAULT_SERVER: db
-    restart: always
+    restart: unless-stopped
     ports:
       - 8081:8080
     networks:
